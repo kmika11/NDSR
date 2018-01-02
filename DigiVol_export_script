@@ -1,0 +1,12 @@
+library(stringr)
+Sys.setlocale('LC_ALL','C')
+
+#create dataframe with CSV file from DigiVol (tasks.csv usually)
+data <- read.csv("file.csv",stringsAsFactors=F)
+
+#in "occurrenceRemarks" column change newlines (\\n) to carriage returns (\r) 
+data$occurrenceRemarks <- gsub("\\n","\r",fixed=TRUE,data$occurrenceRemarks)
+
+#write transformed dataframe to CSV file
+write.csv(data,file="file.csv", row.names = F)
+
